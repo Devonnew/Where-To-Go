@@ -124,7 +124,7 @@ export const stores = {
         foursquare: "572e70e4498e66d841e9c25e",
         landmark: true,
         address: "3452 Broadway",
-        category: "seafood, seafood restaurant, restaurant",
+        category: "ramen restaurant, cocktails",
       },
       text: "ROKC",
       place_name:

@@ -27,20 +27,25 @@ export default class App extends React.PureComponent {
     this.state = {
       coordinates: [-73.96633010809775, 40.7814433547441],
       popup: undefined,
+      zoom: 12,
     };
     this.clusterClick = this.clusterClick.bind(this);
     this.onMove = this.onMove.bind(this);
+    this.zoomedIn = this.zoomedIn.bind(this);
   }
 
-  clusterClick = (coordinates, name, address) => {
+  clusterClick = (coordinates, name, address, tags) => {
     this.setState({
       coordinates,
       popup: {
         coordinates,
         name,
         address,
+        tags,
       },
+      zoom: 15,
     });
+    console.log("clicked!");
   };
 
   onMove = () => {
@@ -49,11 +54,19 @@ export default class App extends React.PureComponent {
     }
   };
 
+  zoomedIn = () => {
+    if (this.state.popup.zoom) {
+      return this.state.popup.zoom;
+    } else {
+      return 12;
+    }
+  };
+
   render() {
-    const { popup } = this.state;
+    const { popup, zoom } = this.state;
     return (
       <div>
-        <Sidebar />
+        <Sidebar clusterClick={this.clusterClick} />
         <div className="map">
           <Map
             style="mapbox://styles/mapbox/dark-v10"
@@ -62,7 +75,7 @@ export default class App extends React.PureComponent {
               width: "66vw",
             }}
             center={this.state.coordinates}
-            zoom={[12]}
+            zoom={[zoom]}
             onClick={this.onMove}
           >
             {stores.features.map((store, key) => (
@@ -76,7 +89,8 @@ export default class App extends React.PureComponent {
                     this.clusterClick(
                       store.geometry.coordinates,
                       store.text,
-                      store.properties.address
+                      store.properties.address,
+                      store.properties.category
                     )
                   }
                 ></Marker>
@@ -86,6 +100,7 @@ export default class App extends React.PureComponent {
               <Popup coordinates={popup.coordinates}>
                 <div>{this.state.popup.name}</div>
                 <div>{this.state.popup.address}</div>
+                <div>{this.state.popup.tags}</div>
               </Popup>
             )}
           </Map>

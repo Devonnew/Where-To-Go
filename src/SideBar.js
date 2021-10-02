@@ -3,6 +3,8 @@ import { stores } from "./vibes";
 
 export default class SideBar extends React.PureComponent {
   render() {
+    console.log("state", this.state);
+    console.log("props", this.props);
     const { features } = stores;
     return (
       <div className="sidebar2">
@@ -13,7 +15,19 @@ export default class SideBar extends React.PureComponent {
           {features.map((place, id) => {
             return (
               <div className="item" key={id}>
-                <p className="title">{place.text}</p>
+                <p
+                  className="title"
+                  onClick={() =>
+                    this.props.clusterClick(
+                      place.center,
+                      place.text,
+                      place.properties.address,
+                      place.properties.category
+                    )
+                  }
+                >
+                  {place.text}
+                </p>
                 <p>{place.properties.address}</p>
                 <p>{place.properties.category}</p>
               </div>
