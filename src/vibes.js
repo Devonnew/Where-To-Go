@@ -10,7 +10,7 @@ export const stores = {
         foursquare: "511a937ee88968b8acbba54b",
         landmark: true,
         address: "341 Saint Nicholas Ave",
-        category: "french restaurant, french food, restaurant",
+        category: "french restaurant, french food, bar",
       },
       text: "Maison Harlem",
       place_name:

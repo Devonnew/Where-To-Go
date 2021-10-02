@@ -121,3 +121,10 @@ a:hover {
   background: #00853e;
   border-radius: 0;
 }
+
+.StyledPopup  {
+  background: white;
+  color: #3f618c;
+  font-weight: 400;
+  padding: 5px;
+  border-radius: 2px;}
