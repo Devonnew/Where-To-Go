@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMapboxGl, { Cluster, Marker, Popup } from "react-mapbox-gl";
+import ReactMapboxGl, { Marker, Popup } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { stores } from "./vibes";
 import Sidebar from "./SideBar";
@@ -50,7 +50,7 @@ export default class App extends React.PureComponent {
 
   onMove = () => {
     if (this.state.popup) {
-      this.setState({ popup: undefined });
+      this.setState({ popup: undefined, zoom: 12 });
     }
   };
 
@@ -60,6 +60,10 @@ export default class App extends React.PureComponent {
     } else {
       return 12;
     }
+  };
+
+  findRoute = (lat, lng) => {
+    const response = `https://transit.router.hereapi.com/v8/routes?origin=${lat},${lng}&destination=${lat},${lng}`;
   };
 
   render() {

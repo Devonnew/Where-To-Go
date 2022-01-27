@@ -3,8 +3,6 @@ import { stores } from "./vibes";
 
 export default class SideBar extends React.PureComponent {
   render() {
-    console.log("state", this.state);
-    console.log("props", this.props);
     const { features } = stores;
     return (
       <div className="sidebar2">
